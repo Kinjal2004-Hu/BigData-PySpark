@@ -1,0 +1,13 @@
+# runtime artifacts
+__pycache__/
+*.pyc
+data/customeriq.db*
+data/logs/
+data/processed/
+data/models/
+report_assets/data/
+backend/.venv/
+
+# editor
+.vscode/
+.idea/

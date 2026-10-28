@@ -1,0 +1,110 @@
+﻿python : WARNING: Using incubator modules: jdk.incubator.vector
+At line:1 char:68
++ ... oop\bin;$env:PATH"; python report_assets\pipeline\run.py 2>&1 | Out-F ...
++                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (WARNING: Using ...ncubator.vector:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+C:\Python314\Lib\site-packages\pyspark\testing\utils.py:127: FutureWarning: PySpark does not yet fully support pandas 
+>= 3.0.0. Some features may not work correctly. It is recommended to use pandas < 3.0.0 for now.
+  require_minimum_pandas_version()
+
+[Stage 22:>                                                         (0 + 1) / 1]
+
+                                                                                
+
+[Stage 57:>                                                         (0 + 1) / 1]
+
+                                                                                
+netlib-blas: JNI_OnLoad: dlopen(libopenblas.dll) failed: LoadLibrary failed
+C:\Python314\Lib\site-packages\pyspark\sql\pandas\conversion.py:298: FutureWarning: PySpark does not yet fully support 
+pandas >= 3.0.0. Some features may not work correctly. It is recommended to use pandas < 3.0.0 for now.
+  require_minimum_pandas_version()
+C:\Python314\Lib\site-packages\pyspark\sql\pandas\conversion.py:348: UserWarning: toPandas attempted Arrow 
+optimization because 'spark.sql.execution.arrow.pyspark.enabled' is set to true; however, failed by the reason below:
+  [PACKAGE_NOT_INSTALLED] PyArrow >= 18.0.0 must be installed; however, it was not found.
+Attempting non-optimization as 'spark.sql.execution.arrow.pyspark.fallback.enabled' is set to true.
+  warn(msg)
+C:\Python314\Lib\site-packages\pyspark\sql\pandas\types.py:778: FutureWarning: PySpark does not yet fully support 
+pandas >= 3.0.0. Some features may not work correctly. It is recommended to use pandas < 3.0.0 for now.
+  require_minimum_pandas_version()
+C:\Python314\Lib\site-packages\pyspark\sql\pandas\types.py:778: FutureWarning: PySpark does not yet fully support 
+pandas >= 3.0.0. Some features may not work correctly. It is recommended to use pandas < 3.0.0 for now.
+  require_minimum_pandas_version()
+==============================================================================
+CustomerIQ data-engine pipeline - demo dataset
+Spark 4.2.1 | deterministic seed = 42
+==============================================================================
+
+[1/5] Reading dataset: demo_online_retail.csv
+Data-quality report
+-------------------
+  Total rows read            :   10,778
+  Exact duplicates removed   :       12
+  Invalid invoice dates      :        5
+  Missing customer ID        :      181
+  Cancellation/return lines :      243
+  Non-positive quantity      :        3
+  Non-positive unit price    :       15
+  Valid transaction lines    :   10,321
+  Distinct segmentable cust. :      430
+  Transaction window         : 2025-01-02 .. 2025-12-28
+
+[2/5] RFM computation (analysis reference date = 2025-12-29)
+  Customers scored: 430
+  RFM sample (first 8 customers by ID):
+CustomerID   | Recency (days) | Frequency  | Monetary     | Avg order value
+-------------+----------------+------------+--------------+----------------
+12018        | 30             | 6          | 249.37       | 41.56          
+12070        | 13             | 3          | 137.86       | 45.95          
+12106        | 10             | 12         | 641.67       | 53.47          
+12116        | 299            | 3          | 47.90        | 15.97          
+12212        | 27             | 21         | 1,752.25     | 83.44          
+12235        | 42             | 3          | 84.61        | 28.20          
+12256        | 126            | 9          | 457.27       | 50.81          
+12305        | 136            | 4          | 75.66        | 18.92          
+
+[3/5] K-Means clustering (Spark MLlib)
+  Feature pipeline: log1p(Frequency), log1p(Monetary), StandardScaler(withMean, withStd)
+  Silhouette score by k:
+    k=3: 0.6093
+    k=4: 0.6412
+    k=5: 0.5964
+    k=6: 0.5769
+    k=7: 0.6297
+    k=8: 0.6284
+  Selected k = 4 (highest silhouette = 0.6412)
+
+[4/5] Cluster profiling and segment labeling
+  Cluster profiles (original RFM scale):
+Cluster  | Customers  | Avg recency (d) | Avg frequency | Avg monetary 
+---------+------------+-----------------+---------------+--------------
+0        | 71         | 21.20           | 2.52          | 88.68        
+1        | 84         | 27.90           | 18.87         | 1,692.52     
+2        | 81         | 288.80          | 2.89          | 81.29        
+3        | 194        | 78.80           | 7.60          | 352.78       
+  Label mapping (ranked by z(Frequency) + z(Monetary) - z(Recency)):
+    cluster 0 -> New Customers
+    cluster 1 -> Champions
+    cluster 2 -> Hibernating
+    cluster 3 -> Potential Loyalists
+
+[5/5] Segment summaries (silhouette = 0.6412)
+Segment              | Customers  | % cust.  | Revenue      | % rev.  | Avg spend  | Avg freq  | Avg rec. d
+---------------------+------------+----------+--------------+---------+------------+-----------+-----------
+Champions            | 84         | 19.50    | 142,171.69   | 63.60   | 1,692.52   | 18.87     | 27.90     
+Potential Loyalists  | 194        | 45.10    | 68,438.39    | 30.60   | 352.78     | 7.60      | 78.80     
+Hibernating          | 81         | 18.80    | 6,584.38     | 2.90    | 81.29      | 2.89      | 288.80    
+New Customers        | 71         | 16.50    | 6,296.07     | 2.80    | 88.68      | 2.52      | 21.20     
+
+  Persisted: C:\Users\Kinjal Ojha\Desktop\BDA\report_assets\data\processed\demo_transactions.parquet
+  Persisted: C:\Users\Kinjal Ojha\Desktop\BDA\report_assets\data\processed\customer_rfm.parquet (+ .csv export)
+  Persisted: C:\Users\Kinjal Ojha\Desktop\BDA\report_assets\data\models\kmeans_model (Spark ML KMeans model)
+
+Pipeline completed successfully.
+SUCCESS: The process with PID 26268 (child process of PID 21320) has been terminated.
+SUCCESS: The process with PID 21320 (child process of PID 23308) has been terminated.
+SUCCESS: The process with PID 23308 (child process of PID 26872) has been terminated.

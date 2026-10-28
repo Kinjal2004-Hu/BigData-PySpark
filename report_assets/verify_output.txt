@@ -1,0 +1,84 @@
+﻿=== FRONT MATTER (first 60 paras) ===
+P003[B{'22.0'}] Big Data Analytics Mini Project Report
+P005[B{'16.0'}] CustomerIQ - Customer Segmentation & Purchase Analytics Platform
+P007[ {'-'}] Submitted in fulfilment of the requirements of the
+P008[ {'-'}] Big Data Analytics Mini Project Semester VII in degree of
+P009[ {'-'}] Bachelor of Computer Engineering
+P011[B{'13.0'}] BY
+P013[ {'-'}] Ashish Anil Sharma (Roll No. 54) / Kinjal Shivprasad Ojha (Roll No. 21)
+P015[ {'11.0'}] Under the Guidance of
+P016[B{'-'}] Ms. Rujuta Vartak
+P019[ {'11.0'}] Department of Computer Engineering
+P020[ {'11.0'}] Shree L. R. Tiwari College of Engineering
+P021[ {'11.0'}] Kanakia Park, Mira Road (E), Thane - 401 107, Maharashtra.
+P022[ {'11.0'}] 2026-27
+P024[B{'14.0'}] Big Data Analytics Mini Project Report Approval
+P026[ {'-'}] This project report entitled "CustomerIQ - Customer Segmentation & Analytics Platform" by 
+P029[B{'-'}] Internal Examiner
+P031[B{'14.0'}] Declaration
+P033[ {'-'}] I declare that this written submission represents my ideas in my own words and where other
+P036[ {'-'}] --------------------------------------
+P037[ {'-'}] Signature
+P038[ {'-'}] Mr. Kinjal Shivprasad Ojha (Roll No. 21)
+P040[ {'-'}] --------------------------------------
+P041[ {'-'}] Signature
+P042[ {'-'}] Mr. Ashish Sharma (Roll No. 54)
+P044[ {'-'}] Date:
+P045[ {'-'}] Place:
+P047[B{'14.0'}] Table of Contents
+P049[ {'-'}] 1. Introduction
+P050[ {'-'}] 2. System Architecture
+P051[ {'-'}] 3. Implementation
+P052[ {'-'}] 4. Technologies Used
+P053[ {'-'}] 5. Results
+P054[ {'-'}] 6. Conclusion
+P055[ {'-'}] 7. References
+P058[B{'14.0'}] 1. Introduction
+P059[ {'-'}] In today's retail and e-commerce industry, businesses accumulate large volumes of transact
+
+=== BODY OUTLINE (bold headings + subheads + images) ===
+P003 [H22] Big Data Analytics Mini Project Report
+P005 [H16] CustomerIQ - Customer Segmentation & Purchase Analytics Platform
+P024 [H14] Big Data Analytics Mini Project Report Approval
+P031 [H14] Declaration
+P047 [H14] Table of Contents
+P058 [H14] 1. Introduction
+P060 [H14] 2. System Architecture
+P062 [H14] 3. Implementation
+P174 [H14] 4. Technologies Used
+P185 [H14] 5. Results
+P187 [H12] 5.1 Data Validation and RFM Computation
+P219 [H12] 5.2 K-Means Segmentation
+P246 <IMAGE>
+P247 [H12] 5.3 Segment Business Insights
+P257 <IMAGE>
+P259 <IMAGE>
+P260 [H14] 6. Conclusion
+P262 [H14] 7. References
+
+=== IMAGE RELS ===
+('rId8', 'media/image3.png', 30430)
+('rId7', 'media/image2.png', 41227)
+('rId6', 'media/image1.png', 44998)
+('rId11', 'media/image4.png', 37515)
+('rId12', 'media/image5.png', 36119)
+('rId13', 'media/image6.png', 51875)
+
+=== CODE FONT CHECK (sample) ===
+Consolas paragraphs: 166
+sample: '  backend/' size=9.0 color=1A1A1A
+
+=== LAST 12 PARAGRAPHS ===
+  6. Conclusion
+  Thus, we studied customer analytics techniques and implemented RFM-based customer segmenta
+  7. References
+  1. Han, J., Kamber, M., and Pei, J. "Data Mining: Concepts and Techniques." 3rd Edition, M
+  2. Lloyd, S. "Least Squares Quantization in PCM." IEEE Transactions on Information Theory,
+  3. Kaufman, L., and Rousseeuw, P. J. "Finding Groups in Data: An Introduction to Cluster A
+  4. Apache Spark Documentation: MLlib - Clustering (K-Means). https://spark.apache.org/docs
+  5. UCI Machine Learning Repository: Online Retail Dataset. https://archive.ics.uci.edu/ml/
+  6. FastAPI Documentation. https://fastapi.tiangolo.com/
+  7. React Documentation. https://react.dev/
+  8. Hughes, A. M. "Strategic Database Marketing." McGraw-Hill, 1996.
+
+Total paragraphs: 271
